@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatDate } from "../data/articles.js";
+import LocalImage from "./LocalImage.jsx";
 
 // Reusable article card used in grids across the site.
 // `variant` = "default" | "featured" (featured: larger layout).
@@ -11,7 +12,7 @@ export default function ArticleCard({ article, variant = "default" }) {
           to={`/articles/${article.slug}`}
           className="relative block aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-full"
         >
-          <img
+          <LocalImage
             src={article.image}
             alt={article.imageCaption || article.title}
             loading="eager"
@@ -51,7 +52,7 @@ export default function ArticleCard({ article, variant = "default" }) {
         to={`/articles/${article.slug}`}
         className="relative block aspect-[16/10] overflow-hidden"
       >
-        <img
+        <LocalImage
           src={article.image}
           alt={article.imageCaption || article.title}
           loading="lazy"

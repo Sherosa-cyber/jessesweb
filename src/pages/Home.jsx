@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
 import ArticleCard from "../components/ArticleCard.jsx";
+import LocalImage from "../components/LocalImage.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
 import Newsletter from "../components/Newsletter.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
@@ -70,7 +71,7 @@ export default function Home() {
               aria-hidden="true"
               className="absolute -left-4 -top-4 h-full w-full rounded-lg border-2 border-accent/40 sm:-left-6 sm:-top-6"
             />
-            <img
+            <LocalImage
               src={site.portrait}
               alt={`Portrait of ${site.name}`}
               className="relative aspect-[4/5] w-full rounded-lg object-cover shadow-[--shadow-card-hover]"
@@ -170,7 +171,7 @@ export default function Home() {
       <section aria-labelledby="about-teaser-title" className="container-x py-16 sm:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-            <img
+            <LocalImage
               src={site.portrait}
               alt={`${site.name} at work`}
               loading="lazy"

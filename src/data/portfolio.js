@@ -1,6 +1,10 @@
-// Loads portfolio data from portfolio.json (editable via the admin
-// panel at /admin).
+// Loads portfolio data from portfolio.json. The admin panel (/admin) saves
+// local edits in the browser first, so we check localStorage before the
+// bundled JSON.
 import portfolioData from "./portfolio.json";
+import { loadLocalContent } from "../utils/localContent.js";
 
-export const portfolioCategories = portfolioData.categories;
-export const portfolioItems = portfolioData.items;
+const data = loadLocalContent("portfolio", portfolioData);
+
+export const portfolioCategories = data.categories;
+export const portfolioItems = data.items;

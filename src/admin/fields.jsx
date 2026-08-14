@@ -1,9 +1,18 @@
 // Shared form controls for the admin panel — simple, large and friendly.
+import { cloneElement, useId } from "react";
+
 export function Field({ label, hint, children }) {
+  const id = useId();
+  const child =
+    children && typeof children === "object" && "type" in children
+      ? cloneElement(children, { id: children.props.id || id })
+      : children;
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-semibold text-ink-900">{label}</label>
-      {children}
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-ink-900">
+        {label}
+      </label>
+      {child}
       {hint && <p className="mt-1 text-xs text-ink-400">{hint}</p>}
     </div>
   );
@@ -74,7 +83,12 @@ export function Button({ variant = "primary", ...props }) {
 
 export function Status({ status }) {
   if (!status) return null;
-  const ok = status.startsWith("Saved") || status.startsWith("Uploaded");
+  const ok =
+    status.startsWith("Saved") ||
+    status.startsWith("Uploaded") ||
+    status.startsWith("Published") ||
+    status.startsWith("Deleted") ||
+    status.startsWith("Photo");
   return (
     <p
       role="status"

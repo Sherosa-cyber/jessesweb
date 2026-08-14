@@ -111,6 +111,19 @@ export async function uploadBinary(path, base64Data, message, token = getToken()
   );
 }
 
+// Deletes a file from the repo.
+export async function deleteFile(path, message, token = getToken()) {
+  const { sha } = await readFile(path, token);
+  return request(
+    `/repos/${REPO.owner}/${REPO.repo}/contents/${path}`,
+    {
+      method: "DELETE",
+      body: JSON.stringify({ message, sha, branch: REPO.branch }),
+    },
+    token
+  );
+}
+
 // Verifies the token works and returns the authenticated user.
 export async function verifyToken(token) {
   const data = await request("/user", {}, token);

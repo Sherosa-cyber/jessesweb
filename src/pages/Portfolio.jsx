@@ -2,6 +2,7 @@ import { useState } from "react";
 import Seo from "../components/Seo.jsx";
 import PageHeader from "../components/PageHeader.jsx";
 import Icons from "../components/Icons.jsx";
+import LocalImage from "../components/LocalImage.jsx";
 import { portfolioCategories, portfolioItems } from "../data/portfolio.js";
 import { site } from "../data/site.js";
 
@@ -52,7 +53,7 @@ export default function Portfolio() {
               className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink-100 bg-white shadow-[--shadow-card] transition-all duration-300 hover:-translate-y-1 hover:shadow-[--shadow-card-hover]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <img
+                <LocalImage
                   src={item.image}
                   alt={item.title}
                   loading="lazy"

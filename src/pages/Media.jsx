@@ -2,6 +2,7 @@ import { useState } from "react";
 import Seo from "../components/Seo.jsx";
 import PageHeader from "../components/PageHeader.jsx";
 import Icons from "../components/Icons.jsx";
+import LocalImage from "../components/LocalImage.jsx";
 import { mediaItems, mediaTypes } from "../data/media.js";
 import { site } from "../data/site.js";
 
@@ -70,7 +71,7 @@ export default function Media() {
                 aria-label={`${item.title} — open ${item.type}`}
                 className="relative block aspect-video overflow-hidden bg-ink-950"
               >
-                <img
+                <LocalImage
                   src={item.image}
                   alt=""
                   loading="lazy"

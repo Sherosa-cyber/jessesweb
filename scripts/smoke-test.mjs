@@ -14,7 +14,7 @@ const routes = [
   { path: "/media", text: "Interviews & appearances" },
   { path: "/about", text: "The person behind the byline" },
   { path: "/contact", text: "Let's talk" },
-  { path: "/admin", text: "Connect your GitHub account" },
+  { path: "/admin", text: "Publish to web" },
   { path: "/this-page-does-not-exist", text: "This story doesn't exist" },
 ];
 

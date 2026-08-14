@@ -1,8 +1,10 @@
-// Loads site configuration from site.json (editable via the admin
-// panel at /admin). Edit the JSON file directly or use the admin UI.
+// Loads site configuration from site.json. The admin panel (/admin) saves
+// local edits in the browser first, so we check localStorage before the
+// bundled JSON. Edit the JSON file directly or use the admin UI.
 import siteData from "./site.json";
+import { loadLocalContent } from "../utils/localContent.js";
 
-export const site = siteData;
+export const site = loadLocalContent("site", siteData);
 
 export const categories = [
   "Politics",

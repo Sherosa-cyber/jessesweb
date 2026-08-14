@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
 import ArticleCard from "../components/ArticleCard.jsx";
+import LocalImage from "../components/LocalImage.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
 import Icons from "../components/Icons.jsx";
 import { site } from "../data/site.js";
@@ -38,7 +39,7 @@ function ContentBlock({ block }) {
     case "img":
       return (
         <figure className="my-10">
-          <img
+          <LocalImage
             src={block.src}
             alt={block.caption || "Article image"}
             className="w-full rounded-lg object-cover"
@@ -128,7 +129,7 @@ export default function ArticleDetail() {
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-500">
               <span className="flex items-center gap-2 font-semibold text-ink-900">
-                <img
+                <LocalImage
                   src={site.portrait}
                   alt=""
                   className="h-8 w-8 rounded-full object-cover"
@@ -147,7 +148,7 @@ export default function ArticleDetail() {
 
         {/* Featured image */}
         <figure className="container-x mt-10 sm:mt-14">
-          <img
+          <LocalImage
             src={article.image}
             alt={article.imageCaption || article.title}
             className="aspect-[16/9] w-full rounded-lg object-cover shadow-[--shadow-card]"
@@ -215,7 +216,7 @@ export default function ArticleDetail() {
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink-400">
                     About the author
                   </p>
-                  <img
+                  <LocalImage
                     src={site.portrait}
                     alt={`Portrait of ${site.name}`}
                     className="mt-4 aspect-square w-20 rounded-full object-cover"

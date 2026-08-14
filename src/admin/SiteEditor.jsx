@@ -52,7 +52,7 @@ export default function SiteEditor({ token }) {
         "Update site settings",
         token
       );
-      setStatus("Saved — the site will update in about 2 minutes.");
+      setStatus("Saved — your changes are live on this device.");
     } catch (e) {
       setError(e.message);
     }
@@ -124,85 +124,145 @@ export default function SiteEditor({ token }) {
         </Section>
 
         <Section title="Social media">
-          {(siteData.socials || []).map((social, i) => (
-            <div key={i} className="grid grid-cols-[1fr_2fr] gap-3">
-              <select
-                className={inputClass}
-                value={social.platform}
-                onChange={(e) =>
-                  setSiteData((s) => {
-                    const socials = [...s.socials];
-                    socials[i] = { ...socials[i], platform: e.target.value };
-                    return { ...s, socials };
-                  })
-                }
-              >
-                {platforms.map((p) => (
-                  <option key={p} value={p}>{p}</option>
-                ))}
-              </select>
-              <TextInput
-                value={social.url}
-                placeholder="https://…"
-                onChange={(e) =>
-                  setSiteData((s) => {
-                    const socials = [...s.socials];
-                    socials[i] = { ...socials[i], url: e.target.value };
-                    return { ...s, socials };
-                  })
-                }
-              />
-            </div>
-          ))}
+          <div className="space-y-3">
+            {(siteData.socials || []).map((social, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className="grid flex-1 grid-cols-[1fr_2fr] gap-3">
+                  <select
+                    className={inputClass}
+                    value={social.platform}
+                    onChange={(e) =>
+                      setSiteData((s) => {
+                        const socials = [...s.socials];
+                        socials[i] = { ...socials[i], platform: e.target.value };
+                        return { ...s, socials };
+                      })
+                    }
+                  >
+                    {platforms.map((p) => (
+                      <option key={p} value={p}>{p}</option>
+                    ))}
+                  </select>
+                  <TextInput
+                    value={social.url}
+                    placeholder="https://…"
+                    onChange={(e) =>
+                      setSiteData((s) => {
+                        const socials = [...s.socials];
+                        socials[i] = { ...socials[i], url: e.target.value };
+                        return { ...s, socials };
+                      })
+                    }
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSiteData((s) => ({ ...s, socials: s.socials.filter((_, j) => j !== i) }))
+                  }
+                  className="mt-1 text-xs font-medium text-accent hover:underline"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <Button
+              variant="outline"
+              onClick={() =>
+                setSiteData((s) => ({ ...s, socials: [...(s.socials || []), { platform: "X", url: "" }] }))
+              }
+            >
+              + Add social link
+            </Button>
+          </div>
         </Section>
 
         <Section title="Education">
-          {(siteData.education || []).map((edu, i) => (
-            <div key={i} className="space-y-3 rounded-md border border-ink-100 p-3">
-              <Field label="Degree">
-                <TextInput
-                  value={edu.degree}
-                  onChange={(e) =>
-                    setSiteData((s) => {
-                      const education = [...s.education];
-                      education[i] = { ...education[i], degree: e.target.value };
-                      return { ...s, education };
-                    })
-                  }
-                />
-              </Field>
-              <Field label="School">
-                <TextInput
-                  value={edu.school}
-                  onChange={(e) =>
-                    setSiteData((s) => {
-                      const education = [...s.education];
-                      education[i] = { ...education[i], school: e.target.value };
-                      return { ...s, education };
-                    })
-                  }
-                />
-              </Field>
-              <Field label="Period (e.g. 2012 – 2013)">
-                <TextInput
-                  value={edu.period}
-                  onChange={(e) =>
-                    setSiteData((s) => {
-                      const education = [...s.education];
-                      education[i] = { ...education[i], period: e.target.value };
-                      return { ...s, education };
-                    })
-                  }
-                />
-              </Field>
-            </div>
-          ))}
+          <div className="space-y-3">
+            {(siteData.education || []).map((edu, i) => (
+              <div key={i} className="space-y-3 rounded-md border border-ink-100 p-3">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-ink-400">
+                    Entry {i + 1}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSiteData((s) => ({ ...s, education: s.education.filter((_, j) => j !== i) }))
+                    }
+                    className="text-xs font-medium text-accent hover:underline"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <Field label="Degree">
+                  <TextInput
+                    value={edu.degree}
+                    onChange={(e) =>
+                      setSiteData((s) => {
+                        const education = [...s.education];
+                        education[i] = { ...education[i], degree: e.target.value };
+                        return { ...s, education };
+                      })
+                    }
+                  />
+                </Field>
+                <Field label="School">
+                  <TextInput
+                    value={edu.school}
+                    onChange={(e) =>
+                      setSiteData((s) => {
+                        const education = [...s.education];
+                        education[i] = { ...education[i], school: e.target.value };
+                        return { ...s, education };
+                      })
+                    }
+                  />
+                </Field>
+                <Field label="Period (e.g. 2012 – 2013)">
+                  <TextInput
+                    value={edu.period}
+                    onChange={(e) =>
+                      setSiteData((s) => {
+                        const education = [...s.education];
+                        education[i] = { ...education[i], period: e.target.value };
+                        return { ...s, education };
+                      })
+                    }
+                  />
+                </Field>
+              </div>
+            ))}
+            <Button
+              variant="outline"
+              onClick={() =>
+                setSiteData((s) => ({ ...s, education: [...(s.education || []), { degree: "", school: "", period: "" }] }))
+              }
+            >
+              + Add education entry
+            </Button>
+          </div>
         </Section>
 
         <Section title="Experience">
-          {(siteData.experience || []).map((job, i) => (
-            <div key={i} className="space-y-3 rounded-md border border-ink-100 p-3">
-              <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-3">
+            {(siteData.experience || []).map((job, i) => (
+              <div key={i} className="space-y-3 rounded-md border border-ink-100 p-3">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-ink-400">
+                    Entry {i + 1}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSiteData((s) => ({ ...s, experience: s.experience.filter((_, j) => j !== i) }))
+                    }
+                    className="text-xs font-medium text-accent hover:underline"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
                 <Field label="Role">
                   <TextInput
                     value={job.role}
@@ -257,7 +317,19 @@ export default function SiteEditor({ token }) {
                 />
               </Field>
             </div>
-          ))}
+            ))}
+            <Button
+              variant="outline"
+              onClick={() =>
+                setSiteData((s) => ({
+                  ...s,
+                  experience: [...(s.experience || []), { role: "", org: "", period: "", points: [] }],
+                }))
+              }
+            >
+              + Add experience entry
+            </Button>
+          </div>
         </Section>
 
         <Section title="Specialisations, awards & publications">

@@ -26,7 +26,7 @@ export default function ListEditor({ token, file, itemName, getList, setList, ma
   const items = getList(data);
 
   const saveList = async (next, message) => {
-    await writeFile(file, JSON.stringify(setList(data, next), null, 2) + "\n", message, token);
+    await writeFile(file, JSON.stringify(setList(data, next), null, 2) + "\n", message);
   };
 
   const remove = async (index) => {
@@ -35,7 +35,7 @@ export default function ListEditor({ token, file, itemName, getList, setList, ma
       const next = items.filter((_, i) => i !== index);
       await saveList(next, `Delete ${itemName}`);
       setData(setList(data, next));
-      setStatus("Deleted — the site will update in about 2 minutes.");
+      setStatus("Deleted — your changes are live on this device.");
     } catch (e) {
       setStatus(e.message);
     }
@@ -54,7 +54,7 @@ export default function ListEditor({ token, file, itemName, getList, setList, ma
           const next = editing.__new ? [...items, item] : items.map((it, i) => (i === editing.__index ? item : it));
           await saveList(next, editing.__new ? `Add ${itemName}: ${item.title}` : `Update ${itemName}: ${item.title}`);
           setData(setList(data, next));
-          setStatus(`Saved — the site will update in about 2 minutes.`);
+          setStatus(`Saved — your changes are live on this device.`);
           setEditing(null);
         }}
       />

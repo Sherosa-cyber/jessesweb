@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
 import PageHeader from "../components/PageHeader.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
+import LocalImage from "../components/LocalImage.jsx";
 import { site } from "../data/site.js";
 
 function Timeline() {
@@ -51,7 +52,7 @@ export default function About() {
             aria-hidden="true"
             className="absolute -left-4 -top-4 h-full w-full rounded-lg border-2 border-accent/40 sm:-left-6 sm:-top-6"
           />
-          <img
+          <LocalImage
             src={site.portrait}
             alt={`Portrait of ${site.name}`}
             className="relative aspect-[4/5] w-full rounded-lg object-cover shadow-[--shadow-card-hover]"

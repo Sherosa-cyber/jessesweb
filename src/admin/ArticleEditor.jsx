@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { readFile, writeFile, listDir, makeSlug, today } from "./gh.js";
+import { readFile, writeFile, listLocalFiles } from "./localStore.js";
+import { makeSlug, today } from "./gh.js";
+import LocalImage from "../components/LocalImage.jsx";
 import { blocksToText, textToBlocks } from "../utils/markup.js";
 import { Field, TextInput, TextArea, Select, Checkbox, Section, Button, Status, inputClass } from "./fields.jsx";
 import { categories } from "../data/site.js";
@@ -18,12 +20,12 @@ export default function ArticleEditor({ token }) {
       try {
         const file = await readFile(FILE, token);
         setArticles(JSON.parse(file.content));
-        try {
-          const files = await listDir("public/images", token);
-          setImages(files.map((f) => "images/" + f.name));
-        } catch {
-          setImages([]);
-        }
+        const files = await listLocalFiles();
+        const used = JSON.parse(file.content)
+          .map((a) => a.image)
+          .filter(Boolean)
+          .filter((p) => p.startsWith("images/"));
+        setImages([...new Set([...used, ...files.map((f) => "images/" + f.name)])]);
       } catch (e) {
         setError(e.message);
       }
@@ -43,7 +45,7 @@ export default function ArticleEditor({ token }) {
         onCancel={() => setEditing(null)}
         onSaved={(next, savedArticle) => {
           setArticles(next);
-          setStatus("Saved — the site will update in about 2 minutes.");
+          setStatus("Saved — your changes are live on this device.");
           setEditing(null);
         }}
       />
@@ -63,7 +65,7 @@ export default function ArticleEditor({ token }) {
         token
       );
       setArticles(next);
-      setStatus("Deleted — the site will update in about 2 minutes.");
+      setStatus("Deleted — your changes are live on this device.");
     } catch (e) {
       setStatus(e.message);
     }
@@ -258,7 +260,7 @@ function ArticleForm({ token, articles, images, editing, onCancel, onSaved }) {
           </Field>
           <div className="overflow-hidden rounded-md border border-ink-100 bg-ink-50">
             {form.image ? (
-              <img src={form.image} alt="Cover preview" className="aspect-[16/9] w-full object-cover" />
+              <LocalImage src={form.image} alt="Cover preview" className="aspect-[16/9] w-full object-cover" />
             ) : (
               <p className="px-4 py-8 text-center text-sm text-ink-400">No image selected</p>
             )}

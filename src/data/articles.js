@@ -1,9 +1,11 @@
-// Loads articles from articles.json (editable via the admin panel at
-// /admin). To add an article by hand: open articles.json, copy any
-// article object, give it a unique "slug" and add it to the array.
+// Loads articles from articles.json. The admin panel (/admin) saves local
+// edits in the browser first, so we check localStorage before the bundled
+// JSON. To add an article by hand: open articles.json, copy any article
+// object, give it a unique "slug" and add it to the array.
 import articleData from "./articles.json";
+import { loadLocalContent } from "../utils/localContent.js";
 
-export const articles = articleData;
+export const articles = loadLocalContent("articles", articleData);
 
 // ---------- Helpers (no need to edit these) ----------
 

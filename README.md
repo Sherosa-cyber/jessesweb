@@ -39,32 +39,32 @@ npm run preview   # preview the production build
 The whole site — articles, site settings, portfolio, media, and photo uploads — can be
 edited in the browser at **`/admin`** (e.g. `https://sherosa-cyber.github.io/jessesweb/admin`).
 
-### One-time setup: create a GitHub token
+### How it works
 
-1. Go to **github.com → Settings → Developer settings → Fine-grained personal access tokens → Generate new token**.
-2. Repository access: **Only select repositories → `jessesweb`**.
-3. Permissions → **Contents**: set to **Read and write** (this is the only permission needed).
-4. Click **Generate token** and copy the value that starts with `github_pat_`.
-5. Open the site's `/admin` page, paste the token, and click **Connect**.
+- **No login required.** The admin opens straight into the editor.
+- Every change you **Save** appears on the site **instantly, right on that device**
+  (saved in the browser, no waiting, no accounts).
+- When you want your changes on the **live website** for everyone, press
+  **Publish to web** — that pushes everything to GitHub and the live site rebuilds in
+  about 2 minutes. Publishing needs a GitHub token once per browser (instructions are
+  shown right inside the publish panel; the token stays on your device).
 
-The token is stored **only in your browser** (localStorage on the device you use) — it is
-never sent anywhere except GitHub's API, and it can be revoked at any time.
-
-### Using the tabs
+### The tabs
 
 - **Articles** — add, edit, or delete articles. Body text uses a simple format: blank line
   between paragraphs, `## Heading`, `### Sub-heading`, `> Quote` (+ `> — Name` for the
   source), `- bullet`, and `![Caption](images/photo.jpg)` for images. New articles appear
   on the site automatically; they need an `images/...` photo.
-- **Site settings** — name, publication, bio, portrait, social links, contact details,
-  education, experience, awards, and more.
+- **Site settings** — name, publication, bio, portrait, social links (add/remove),
+  contact details, education & experience entries (add/remove), awards, and more.
 - **Portfolio** — add/edit/delete portfolio pieces.
 - **Media** — add/edit/delete appearances (video, podcast, TV, radio, print).
-- **Photos** — upload photos straight from your computer; they land in `public/images`
-  and give you a ready-to-paste path like `images/my-photo.jpg`.
+- **Photos** — add photos straight from your computer (they show on the site instantly)
+  and delete them. Use the copyable path like `images/my-photo.jpg` in articles,
+  portfolio, media or site settings.
 
-**Note:** after saving, the live site updates automatically within ~2 minutes (GitHub
-Actions rebuild).
+**Note:** local changes only affect the device/browser where they were saved until you
+press **Publish to web**.
 
 ## Where to personalise (if editing files directly)
 

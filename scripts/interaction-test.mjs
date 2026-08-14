@@ -119,20 +119,43 @@ const check = (name, ok, detail = "") => {
   await page.close();
 }
 
-// 6. Admin panel: login screen + token connection attempt
+// 6. Admin panel: local-first editing (no login), instant save, publish panel
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   const errors = [];
   page.on("pageerror", (err) => errors.push(String(err)));
   await page.goto("http://localhost:4173" + BASE + "/admin", { waitUntil: "networkidle" });
-  check("admin login renders", await page.getByText("Connect your GitHub account").isVisible());
-  check("admin token steps visible", await page.getByText("Fine-grained").first().isVisible());
-  // Attempt connect with a bad token → should show a helpful error, no crash
-  await page.fill("input[type=password]", "invalid-token-xyz");
-  await page.getByRole("button", { name: "Connect" }).click();
-  await page.waitForTimeout(4000); // allow the API call to fail gracefully
-  check("admin bad token shows error", await page.getByRole("alert").isVisible());
+  check("admin opens without login", await page.getByText("Edit anything below").isVisible());
+  check("admin tabs visible", await page.getByRole("tab", { name: "Articles" }).isVisible());
+
+  // Edit an article locally and confirm it shows on the site instantly
+  await page.locator('li:has-text("The Power Brokers") button:has-text("Edit")').click();
+  await page.waitForTimeout(300);
+  await page.getByLabel("Title", { exact: true }).fill("The Power Brokers (edited locally)");
+  await page.getByRole("button", { name: "Save article" }).first().click();
+  await page.waitForTimeout(500);
+  check("article saved locally", await page.getByText("live on this device").isVisible());
+  await page.goto("http://localhost:4173" + BASE + "/articles", { waitUntil: "networkidle" });
+  check("edited title on site instantly",
+    await page.getByText("The Power Brokers (edited locally)").isVisible());
+
+  // Publish panel opens with token instructions
+  await page.goto("http://localhost:4173" + BASE + "/admin", { waitUntil: "networkidle" });
+  await page.getByRole("button", { name: "Publish to web" }).click();
+  await page.waitForTimeout(300);
+  check("publish panel opens", await page.getByText("How to get the token").isVisible());
+  await page.getByText("How to get the token").click();
+  await page.waitForTimeout(200);
+  check("publish panel instructions", await page.getByText("Fine-grained").first().isVisible());
+
+  // Invalid token → graceful error (real API call now that a change exists), no crash
+  await page.fill("input[aria-label='GitHub token']", "invalid-token-xyz");
+  await page.getByRole("button", { name: "Publish now" }).click();
+  await page.waitForTimeout(4000);
+  check("publish bad token shows error", await page.getByRole("alert").isVisible());
   check("admin no runtime errors", errors.length === 0, errors.join(" | "));
+  await page.getByRole("button", { name: "Close" }).click();
+  await page.waitForTimeout(200);
   await page.close();
 }
 
