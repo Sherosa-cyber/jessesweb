@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <script>
+      // GitHub Pages SPA fallback.
+      // GitHub Pages returns this 404.html for any unknown route; we save the
+      // requested path and redirect to the app root, which then restores it.
+      (function () {
+        var base = "/jessesweb";
+        var path = location.pathname;
+        if (path.indexOf(base) === 0) path = path.slice(base.length);
+        if (path === "") path = "/";
+        sessionStorage.setItem("gh-spa-path", path);
+        location.replace(base + "/");
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

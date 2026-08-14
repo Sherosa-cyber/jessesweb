@@ -58,4 +58,14 @@ Both spin up `vite preview` on port 4173 automatically.
 
 ## Deployment
 
-Build with `npm run build` and host the `dist/` folder on any static host (Netlify, Vercel, GitHub Pages, Cloudflare Pages). Add an SPA fallback/rewrite so `/articles/...` deep links serve `index.html`.
+**GitHub Pages (automated):** pushing to `main` triggers `.github/workflows/deploy.yml`,
+which builds the site and publishes it via GitHub Actions. The live URL is:
+
+- **https://sherosa-cyber.github.io/jessesweb/**
+
+The site is configured for the `/jessesweb/` subpath (`vite.config.js` base + React Router
+`basename`), and `public/404.html` provides an SPA fallback so deep links
+(`/articles/...`) work after a refresh. Local `npm run dev` stays on the root (`/`).
+
+For any other static host (Netlify, Vercel, Cloudflare Pages): build with `npm run build`
+and add an SPA rewrite so unknown routes serve `index.html`.

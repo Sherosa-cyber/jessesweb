@@ -1,4 +1,5 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
@@ -29,19 +30,35 @@ function Layout() {
   );
 }
 
+// Restores a deep-link path saved by public/404.html (GitHub Pages SPA fallback).
+function SpaFallback() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const saved = sessionStorage.getItem("gh-spa-path");
+    if (saved) {
+      sessionStorage.removeItem("gh-spa-path");
+      navigate(saved, { replace: true });
+    }
+  }, [navigate]);
+  return null;
+}
+
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="articles" element={<Articles />} />
-        <Route path="articles/:slug" element={<ArticleDetail />} />
-        <Route path="portfolio" element={<Portfolio />} />
-        <Route path="media" element={<Media />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <>
+      <SpaFallback />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="articles" element={<Articles />} />
+          <Route path="articles/:slug" element={<ArticleDetail />} />
+          <Route path="portfolio" element={<Portfolio />} />
+          <Route path="media" element={<Media />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
