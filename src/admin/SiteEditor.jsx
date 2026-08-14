@@ -12,7 +12,7 @@ import {
 
 const FILE = "src/data/site.json";
 
-const platforms = ["X", "Facebook", "Instagram", "LinkedIn", "YouTube", "WhatsApp", "RSS"];
+const platforms = ["X", "Facebook", "Instagram", "TikTok", "LinkedIn", "YouTube", "WhatsApp", "RSS"];
 
 export default function SiteEditor({ token }) {
   const [siteData, setSiteData] = useState(null);

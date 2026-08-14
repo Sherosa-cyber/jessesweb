@@ -18,29 +18,24 @@
   "responseNote": "I read every message and aim to reply within two working days.",
   "socials": [
     {
-      "platform": "X",
-      "handle": "@JesseParakuo",
-      "url": "https://x.com/jesseparakuo"
+      "platform": "Facebook",
+      "handle": "Reson Parakuo",
+      "url": "https://www.facebook.com/resonparakuo"
     },
     {
-      "platform": "LinkedIn",
-      "handle": "Jesse Parakuo",
-      "url": "https://www.linkedin.com/in/jesseparakuo"
+      "platform": "X",
+      "handle": "Reson jesse Parakuo",
+      "url": "https://x.com/ResonJesseParakuo"
+    },
+    {
+      "platform": "TikTok",
+      "handle": "@R_Jesse",
+      "url": "https://www.tiktok.com/@r_jesse"
     },
     {
       "platform": "Instagram",
-      "handle": "@jesseparakuo.reports",
-      "url": "https://www.instagram.com/jesseparakuo.reports"
-    },
-    {
-      "platform": "YouTube",
-      "handle": "The Parakuo Ledger",
-      "url": "https://www.youtube.com/@theparakuoleger"
-    },
-    {
-      "platform": "Facebook",
-      "handle": "The Parakuo Ledger",
-      "url": "https://www.facebook.com/theparakuoleger"
+      "handle": "Reson Parakuo",
+      "url": "https://www.instagram.com/resonparakuo"
     }
   ],
   "education": [
