@@ -15,7 +15,7 @@ export const mediaItems = [
     duration: "12 episodes",
     description:
       "My ongoing interview series on the people shaping the systems of the modern world — from data-labour contractors to central bankers.",
-    image: "/images/podcast.jpg",
+    image: "images/podcast.jpg",
     link: "https://example.com/podcast/the-long-read",
   },
   {
@@ -26,7 +26,7 @@ export const mediaItems = [
     duration: "24 min",
     description:
       "A short documentary drawn from my investigation into the human cost of the artificial intelligence boom.",
-    image: "/images/studio.jpg",
+    image: "images/studio.jpg",
     link: "https://example.com/watch/inside-the-ai-boom",
   },
   {
@@ -37,7 +37,7 @@ export const mediaItems = [
     duration: "18 min",
     description:
       "A live panel discussion on the reorganisation of global trade, following the publication of 'Broken Chains'.",
-    image: "/images/tv-studio.jpg",
+    image: "images/tv-studio.jpg",
     link: "https://example.com/tv/morning-brief",
   },
   {
@@ -48,7 +48,7 @@ export const mediaItems = [
     duration: "21 min",
     description:
       "A one-on-one interview on the housing crisis, the generational divide, and the reporting behind the numbers.",
-    image: "/images/camera.jpg",
+    image: "images/camera.jpg",
     link: "https://example.com/radio/housing-divide",
   },
   {
@@ -59,7 +59,7 @@ export const mediaItems = [
     duration: "3,200 words",
     description:
       "A commissioned essay on why the cinema industry's reinvention matters for how we gather in the digital age.",
-    image: "/images/opinion.jpg",
+    image: "images/opinion.jpg",
     link: "https://example.com/print/cinematic-event",
   },
   {
@@ -70,7 +70,7 @@ export const mediaItems = [
     duration: "16 min",
     description:
       "My photo essay on the migrant workforce building the Gulf's new cities — told through the people the stories forget.",
-    image: "/images/film.jpg",
+    image: "images/film.jpg",
     link: "https://example.com/watch/faces-of-the-city",
   },
 ];

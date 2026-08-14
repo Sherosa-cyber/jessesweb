@@ -22,7 +22,7 @@ export const articles = [
     category: "Technology",
     date: "2026-07-28",
     readTime: 9,
-    image: "/images/technology-ai.jpg",
+    image: "images/technology-ai.jpg",
     imageCaption:
       "The infrastructure of the AI boom stretches far beyond the server farm — and its footprint is felt in towns most people have never heard of.",
     featured: true,
@@ -63,7 +63,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/technology-ai.jpg",
+        src: "images/technology-ai.jpg",
         caption:
           "Data centres have become the defining infrastructure of the decade — and their neighbours are beginning to ask who pays.",
       },
@@ -99,7 +99,7 @@ export const articles = [
     category: "Politics",
     date: "2026-07-15",
     readTime: 11,
-    image: "/images/politics.jpg",
+    image: "images/politics.jpg",
     imageCaption:
       "The public face of politics is the chamber — but the real decisions are settled long before the debate begins.",
     featured: false,
@@ -162,7 +162,7 @@ export const articles = [
     category: "Business",
     date: "2026-07-02",
     readTime: 8,
-    image: "/images/business.jpg",
+    image: "images/business.jpg",
     imageCaption:
       "The handshake that built global trade is being renegotiated — literally, in port cities and factory floors around the world.",
     featured: false,
@@ -195,7 +195,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/business.jpg",
+        src: "images/business.jpg",
         caption:
           "Near-shoring and friend-shoring are redrawing the routes of global trade — and the fortunes of the cities along them.",
       },
@@ -219,7 +219,7 @@ export const articles = [
     category: "Culture",
     date: "2026-06-18",
     readTime: 7,
-    image: "/images/culture.jpg",
+    image: "images/culture.jpg",
     imageCaption:
       "Old and new archives side by side: the librarians of the digital age argue the oldest methods may be the safest.",
     featured: false,
@@ -248,7 +248,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/culture.jpg",
+        src: "images/culture.jpg",
         caption:
           "In a surprising reversal, many archivists now recommend printing critical records — the oldest storage medium still outlasts every new one.",
       },
@@ -276,7 +276,7 @@ export const articles = [
     category: "Society",
     date: "2026-06-05",
     readTime: 10,
-    image: "/images/society.jpg",
+    image: "images/society.jpg",
     imageCaption:
       "The housing debate is often framed in statistics. The reality, in every city, is people — and the choices they never expected to make.",
     featured: false,
@@ -317,7 +317,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/society.jpg",
+        src: "images/society.jpg",
         caption:
           "For a growing share of the population, housing has become a source of precarity rather than security.",
       },
@@ -341,7 +341,7 @@ export const articles = [
     category: "International",
     date: "2026-05-22",
     readTime: 9,
-    image: "/images/international.jpg",
+    image: "images/international.jpg",
     imageCaption:
       "The Gulf's skyline is being rebuilt at a speed with few precedents in urban history.",
     featured: false,
@@ -370,7 +370,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/international.jpg",
+        src: "images/international.jpg",
         caption:
           "The region's bet on the post-oil era is visible in every skyline — and in the migrant labourers who build it.",
       },
@@ -402,7 +402,7 @@ export const articles = [
     category: "Opinion",
     date: "2026-05-09",
     readTime: 5,
-    image: "/images/opinion.jpg",
+    image: "images/opinion.jpg",
     imageCaption:
       "Everywhere the digital world promised to replace print, print has quietly, obstinately, survived.",
     featured: false,
@@ -457,7 +457,7 @@ export const articles = [
     category: "Business",
     date: "2026-04-24",
     readTime: 8,
-    image: "/images/energy.jpg",
+    image: "images/energy.jpg",
     imageCaption:
       "The turbines turn at night, in weather, and without fanfare — which is exactly how their owners prefer it.",
     featured: false,
@@ -490,7 +490,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/energy.jpg",
+        src: "images/energy.jpg",
         caption:
           "In coastal regions, offshore wind has moved from experiment to the largest single source of new generation capacity.",
       },
@@ -518,7 +518,7 @@ export const articles = [
     category: "Technology",
     date: "2026-04-10",
     readTime: 9,
-    image: "/images/cybersecurity.jpg",
+    image: "images/cybersecurity.jpg",
     imageCaption:
       "The modern breach rarely announces itself with fireworks. It is discovered, months later, in the quiet corner of a finance spreadsheet.",
     featured: false,
@@ -547,7 +547,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/cybersecurity.jpg",
+        src: "images/cybersecurity.jpg",
         caption:
           "Behind every modern breach is a chain of trust — and the chain is only as strong as its least careful link.",
       },
@@ -575,7 +575,7 @@ export const articles = [
     category: "Culture",
     date: "2026-03-27",
     readTime: 7,
-    image: "/images/film.jpg",
+    image: "images/film.jpg",
     imageCaption:
       "The cinema is being reinvented not as a screen, but as a place — and places are exactly what the digital age runs out of.",
     featured: false,
@@ -604,7 +604,7 @@ export const articles = [
       },
       {
         type: "img",
-        src: "/images/film.jpg",
+        src: "images/film.jpg",
         caption:
           "From restored classics to midnight premieres, the programmes that fill seats are the ones that cannot be streamed.",
       },

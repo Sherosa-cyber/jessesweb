@@ -29,7 +29,7 @@ export const site = {
   ],
 
   // File name of the professional portrait (place your own in /public/images)
-  portrait: "/images/portrait.jpg",
+  portrait: "images/portrait.jpg",
   portraitCaption: "Jesse Brooks, photographed in London, 2026",
 
   // Contact details

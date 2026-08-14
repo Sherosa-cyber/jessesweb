@@ -21,7 +21,7 @@ export const portfolioItems = [
     description:
       "A six-month investigation into the unelected negotiators who draft the laws we live by. Cited in parliamentary proceedings.",
     date: "2026-07",
-    image: "/images/politics.jpg",
+    image: "images/politics.jpg",
     tags: ["Politics", "Data"],
     link: "/articles/the-power-brokers",
   },
@@ -31,7 +31,7 @@ export const portfolioItems = [
     description:
       "How the era of 'just in time' global trade gave way to a slower, stranger and more political world of commerce.",
     date: "2026-07",
-    image: "/images/business.jpg",
+    image: "images/business.jpg",
     tags: ["Business", "Trade"],
     link: "/articles/broken-chains",
   },
@@ -41,7 +41,7 @@ export const portfolioItems = [
     description:
       "Original interview series with the engineers and executives building the renewable future — away from the summits.",
     date: "2026-04",
-    image: "/images/energy.jpg",
+    image: "images/energy.jpg",
     tags: ["Energy", "Interview"],
     link: "/articles/wind-at-their-backs",
   },
@@ -51,7 +51,7 @@ export const portfolioItems = [
     description:
       "A conversation with the archivist fighting to stop the digital age from forgetting itself.",
     date: "2026-06",
-    image: "/images/culture.jpg",
+    image: "images/culture.jpg",
     tags: ["Culture", "Interview"],
     link: "/articles/the-last-librarian",
   },
@@ -61,7 +61,7 @@ export const portfolioItems = [
     description:
       "A year of reporting on the housing crisis, told through the people priced out of the places they grew up in.",
     date: "2026-06",
-    image: "/images/society.jpg",
+    image: "images/society.jpg",
     tags: ["Society", "Long-form"],
     link: "/articles/the-housing-divide",
   },
@@ -71,7 +71,7 @@ export const portfolioItems = [
     description:
       "On the ground in the Gulf's boom cities, reporting the transformation rewriting the region's place in the world.",
     date: "2026-05",
-    image: "/images/international.jpg",
+    image: "images/international.jpg",
     tags: ["International", "Long-form"],
     link: "/articles/skyline-of-opportunity",
   },
@@ -81,7 +81,7 @@ export const portfolioItems = [
     description:
       "An essay on the strange afterlife of print journalism in a world that has everything except time.",
     date: "2026-05",
-    image: "/images/opinion.jpg",
+    image: "images/opinion.jpg",
     tags: ["Media", "Essay"],
     link: "/articles/the-ink-is-dry",
   },
@@ -91,7 +91,7 @@ export const portfolioItems = [
     description:
       "A critical look at the human cost of the AI boom — and who is asked to pay it.",
     date: "2026-07",
-    image: "/images/technology-ai.jpg",
+    image: "images/technology-ai.jpg",
     tags: ["Technology", "Essay"],
     link: "/articles/the-price-of-progress",
   },
@@ -101,7 +101,7 @@ export const portfolioItems = [
     description:
       "A photo essay on the anonymous workforce building the future — the people the stories forget.",
     date: "2026-02",
-    image: "/images/camera.jpg",
+    image: "images/camera.jpg",
     tags: ["Photography", "Photo essay"],
     link: "https://example.com/faces-of-the-city",
   },
@@ -111,7 +111,7 @@ export const portfolioItems = [
     description:
       "A short multimedia documentary on the reinvention of cinema as a gathering place in the streaming age.",
     date: "2026-03",
-    image: "/images/film.jpg",
+    image: "images/film.jpg",
     tags: ["Video", "Documentary"],
     link: "https://example.com/reel-and-real",
   },
