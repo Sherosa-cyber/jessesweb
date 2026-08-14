@@ -11,7 +11,7 @@ export default function Footer() {
         {/* Masthead + tagline */}
         <div>
           <p className="font-serif text-3xl font-bold tracking-tight">
-            {site.name}
+            {site.publication}
             <span className="text-accent">.</span>
           </p>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">{site.tagline}</p>

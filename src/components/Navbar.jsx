@@ -39,7 +39,7 @@ export default function Navbar() {
           className="flex items-baseline gap-0.5 font-serif text-2xl font-bold tracking-tight text-ink-950"
           aria-label={`${site.name} — home`}
         >
-          {site.name}
+          {site.publication}
           <span className="text-accent">.</span>
         </Link>
 

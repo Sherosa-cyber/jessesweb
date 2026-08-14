@@ -1,20 +1,25 @@
 // ============================================================
-// SITE CONFIGURATION
+// SITE CONFIGURATION — The Parakuo Ledger
 // ------------------------------------------------------------
 // This is the ONE file you edit to personalise the website:
-// name, biography, photo, social links, contact details, etc.
+// name, publication, biography, photo, social links, etc.
 // ============================================================
 
 export const site = {
-  name: "Jesse Brooks",
+  // Personal name (used in bylines, About page, author boxes)
+  name: "Jesse Parakuo",
   firstName: "Jesse",
+
+  // Publication / brand name (used in navbar, footer, browser tab)
+  publication: "The Parakuo Ledger",
+
   role: "Investigative Journalist & Author",
 
   // Short one-liner used in the hero, footer and meta descriptions
   tagline:
     "Investigative journalist covering power, people, and the systems that connect them.",
 
-  // Hero headline (can be replaced with a punchier line)
+  // Hero headline
   heroHeadline: "Reporting on power, people, and the systems that connect them.",
 
   // Short bio used on the homepage "About" teaser
@@ -23,28 +28,28 @@ export const site = {
 
   // Full biography used on the About page (array = paragraphs)
   bioLong: [
-    "Jesse Brooks is an award-winning investigative journalist with more than a decade of experience covering politics, business and technology. His reporting has shaped policy debates in three countries, exposed systemic failures in public institutions, and been translated into eleven languages.",
+    "Jesse Parakuo is an award-winning investigative journalist with more than a decade of experience covering politics, business and technology. His reporting has shaped policy debates in three countries, exposed systemic failures in public institutions, and been translated into eleven languages.",
     "He began his career as a local reporter in 2014 before joining the national desk, where he built a reputation for patient, evidence-led investigation. His series on supply-chain fragility was cited in parliamentary hearings, and his reporting on the AI boom remains a reference point in technology policy circles.",
     "Today Jesse splits his time between long-form investigations, original interviews, and multimedia storytelling. He believes the best journalism is built on trust: with sources, with readers, and with the communities whose stories deserve to be told carefully.",
   ],
 
   // File name of the professional portrait (place your own in /public/images)
   portrait: "images/portrait.jpg",
-  portraitCaption: "Jesse Brooks, photographed in London, 2026",
+  portraitCaption: "Jesse Parakuo, photographed in London, 2026",
 
   // Contact details
-  email: "jesse@jessebrooks.media",
+  email: "jesse@theparakuoleger.com",
   location: "London, United Kingdom",
   responseNote: "I read every message and aim to reply within two working days.",
 
   // Social media — add/remove entries freely; icons supported:
   // X, Facebook, Instagram, LinkedIn, YouTube, WhatsApp, RSS, Mail
   socials: [
-    { platform: "X", handle: "@JesseBrooks", url: "https://x.com/jessebrooks" },
-    { platform: "LinkedIn", handle: "Jesse Brooks", url: "https://www.linkedin.com/in/jessebrooks" },
-    { platform: "Instagram", handle: "@jessebrooks.reports", url: "https://www.instagram.com/jessebrooks.reports" },
-    { platform: "YouTube", handle: "Jesse Brooks", url: "https://www.youtube.com/@jessebrooks" },
-    { platform: "Facebook", handle: "Jesse Brooks", url: "https://www.facebook.com/jessebrooks" },
+    { platform: "X", handle: "@JesseParakuo", url: "https://x.com/jesseparakuo" },
+    { platform: "LinkedIn", handle: "Jesse Parakuo", url: "https://www.linkedin.com/in/jesseparakuo" },
+    { platform: "Instagram", handle: "@jesseparakuo.reports", url: "https://www.instagram.com/jesseparakuo.reports" },
+    { platform: "YouTube", handle: "The Parakuo Ledger", url: "https://www.youtube.com/@theparakuoleger" },
+    { platform: "Facebook", handle: "The Parakuo Ledger", url: "https://www.facebook.com/theparakuoleger" },
   ],
 
   // Education shown on the About page
