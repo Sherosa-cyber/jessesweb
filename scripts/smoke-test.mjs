@@ -3,8 +3,10 @@
 import { chromium } from "playwright-core";
 import { spawn } from "node:child_process";
 
+const BASE = "/jessesweb"; // matches vite.config.js base in production builds
+
 const routes = [
-  { path: "/", text: "Jesse Brooks" },
+  { path: "/", text: "Jesse Parakuo" },
   { path: "/articles", text: "Search articles" },
   { path: "/articles/the-price-of-progress", text: "The Price of Progress" },
   { path: "/articles/the-power-brokers", text: "The Power Brokers" },
@@ -12,6 +14,7 @@ const routes = [
   { path: "/media", text: "Interviews & appearances" },
   { path: "/about", text: "The person behind the byline" },
   { path: "/contact", text: "Let's talk" },
+  { path: "/admin", text: "Connect your GitHub account" },
   { path: "/this-page-does-not-exist", text: "This story doesn't exist" },
 ];
 
@@ -38,7 +41,7 @@ for (const route of routes) {
   page.on("requestfailed", (req) => errors.push("REQ FAIL: " + req.url()));
 
   try {
-    await page.goto("http://localhost:4173" + route.path, { waitUntil: "networkidle" });
+    await page.goto("http://localhost:4173" + BASE + route.path, { waitUntil: "networkidle" });
     await page.waitForTimeout(300);
     const body = await page.textContent("body");
     const hasText = body.includes(route.text);

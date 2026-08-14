@@ -11,6 +11,7 @@ import Contact from "./pages/Contact.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
 import Media from "./pages/Media.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Admin from "./admin/Admin.jsx";
 
 function Layout() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="media" element={<Media />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

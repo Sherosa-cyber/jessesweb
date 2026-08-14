@@ -3,6 +3,7 @@
 import { chromium } from "playwright-core";
 import { spawn } from "node:child_process";
 
+const BASE = "/jessesweb";
 const server = spawn(
   process.execPath,
   ["node_modules/vite/bin/vite.js", "preview", "--port", "4173", "--strictPort"],
@@ -22,14 +23,14 @@ const check = (name, ok, detail = "") => {
 // 1. Article filters + search
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-  await page.goto("http://localhost:4173/articles", { waitUntil: "networkidle" });
+  await page.goto("http://localhost:4173" + BASE + "/articles", { waitUntil: "networkidle" });
 
   await page.getByRole("button", { name: /Culture/ }).click();
   await page.waitForTimeout(300);
   let cards = await page.locator("article").count();
   check("category filter (Culture)", cards === 2, `expected 2 cards, got ${cards}`);
 
-  await page.getByRole("button", { name: "All" }).first().click();
+  await page.getByRole("button", { name: /^All / }).click();
   await page.waitForTimeout(300);
   cards = await page.locator("article").count();
   check("category filter (All)", cards === 10, `expected 10 cards, got ${cards}`);
@@ -50,28 +51,28 @@ const check = (name, ok, detail = "") => {
 
   await page.click('a:has-text("The Power Brokers")');
   await page.waitForTimeout(400);
-  check("article nav link", page.url().endsWith("/articles/the-power-brokers"));
+  check("article nav link", page.url().endsWith(BASE + "/articles/the-power-brokers"));
   await page.close();
 }
 
 // 2. Mobile menu
 {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  await page.goto("http://localhost:4173/", { waitUntil: "networkidle" });
+  await page.goto("http://localhost:4173" + BASE + "/", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Open menu" }).click();
   await page.waitForTimeout(300);
   const visible = await page.locator("#mobile-menu").isVisible();
   check("mobile hamburger opens", visible);
   await page.locator('#mobile-menu a:has-text("Media")').click();
   await page.waitForTimeout(400);
-  check("mobile menu navigation", page.url().endsWith("/media"));
+  check("mobile menu navigation", page.url().endsWith(BASE + "/media"));
   await page.close();
 }
 
 // 3. Newsletter form
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-  await page.goto("http://localhost:4173/", { waitUntil: "networkidle" });
+  await page.goto("http://localhost:4173" + BASE + "/", { waitUntil: "networkidle" });
   await page.fill("#newsletter-email", "not-an-email");
   await page.getByRole("button", { name: "Subscribe" }).click();
   await page.waitForTimeout(300);
@@ -86,7 +87,7 @@ const check = (name, ok, detail = "") => {
 // 4. Contact form validation + success
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-  await page.goto("http://localhost:4173/contact", { waitUntil: "networkidle" });
+  await page.goto("http://localhost:4173" + BASE + "/contact", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Send message" }).click();
   await page.waitForTimeout(300);
   const errs = await page.locator("p.text-accent").count();
@@ -104,13 +105,13 @@ const check = (name, ok, detail = "") => {
 // 5. Article page: share buttons, prev/next, related
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-  await page.goto("http://localhost:4173/articles/the-price-of-progress", { waitUntil: "networkidle" });
+  await page.goto("http://localhost:4173" + BASE + "/articles/the-price-of-progress", { waitUntil: "networkidle" });
   const shareBtns = await page.getByRole("link", { name: /Share on/ }).count();
   check("share buttons", shareBtns === 4, `expected 4, got ${shareBtns}`);
   check("related stories", await page.getByText("Related stories").isVisible());
   check("previous article nav (newest article)", await page.getByText("Previous article").isVisible());
   check("no next on newest", (await page.getByText("Next article").count()) === 0);
-  await page.goto("http://localhost:4173/articles/the-housing-divide", { waitUntil: "networkidle" });
+  await page.goto("http://localhost:4173" + BASE + "/articles/the-housing-divide", { waitUntil: "networkidle" });
   check("both prev & next on middle article",
     (await page.getByText("Previous article").count()) === 1 &&
     (await page.getByText("Next article").count()) === 1);
@@ -118,11 +119,28 @@ const check = (name, ok, detail = "") => {
   await page.close();
 }
 
-// 6. Footer + navbar links on every page
+// 6. Admin panel: login screen + token connection attempt
+{
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const errors = [];
+  page.on("pageerror", (err) => errors.push(String(err)));
+  await page.goto("http://localhost:4173" + BASE + "/admin", { waitUntil: "networkidle" });
+  check("admin login renders", await page.getByText("Connect your GitHub account").isVisible());
+  check("admin token steps visible", await page.getByText("Fine-grained").first().isVisible());
+  // Attempt connect with a bad token → should show a helpful error, no crash
+  await page.fill("input[type=password]", "invalid-token-xyz");
+  await page.getByRole("button", { name: "Connect" }).click();
+  await page.waitForTimeout(4000); // allow the API call to fail gracefully
+  check("admin bad token shows error", await page.getByRole("alert").isVisible());
+  check("admin no runtime errors", errors.length === 0, errors.join(" | "));
+  await page.close();
+}
+
+// 7. Footer + navbar links on every page
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   for (const path of ["/", "/about", "/portfolio", "/media", "/contact"]) {
-    await page.goto("http://localhost:4173" + path, { waitUntil: "networkidle" });
+    await page.goto("http://localhost:4173" + BASE + path, { waitUntil: "networkidle" });
     const footerLinks = await page.locator('footer a[href^="/"]').count();
     check(`footer links present on ${path}`, footerLinks >= 6, `got ${footerLinks}`);
     const navLinks = await page.locator('nav[aria-label="Main navigation"] a').count();
