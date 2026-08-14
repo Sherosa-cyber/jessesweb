@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { readFile, writeFile } from "./gh.js";
+import { readFile, writeFile } from "./localStore.js";
 import { Field, TextInput, TextArea, Select, Section, Button, Status } from "./fields.jsx";
 
 // Generic list editor used for Portfolio and Media items.

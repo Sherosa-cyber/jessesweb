@@ -31,6 +31,11 @@ export default function Admin() {
   const publish = async (e) => {
     e.preventDefault();
     if (!token.trim()) return;
+    if (draftCount === 0) {
+      setStatus("");
+      setError("There are no local changes to publish yet. Make an edit and press Save first.");
+      return;
+    }
     setPublishing(true);
     setStatus("");
     setError("");

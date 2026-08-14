@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { readFile, writeFile } from "./gh.js";
+import { readFile, writeFile } from "./localStore.js";
 import {
   Field,
   TextInput,
