@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-ink-50: #f8f9fa;
+  --color-ink-100: #f1f2f4;
+  --color-ink-200: #e2e4e8;
+  --color-ink-300: #c4c8ce;
+  --color-ink-400: #9aa0a8;
+  --color-ink-500: #6f737b;
+  --color-ink-600: #565a61;
+  --color-ink-700: #3a3d42;
+  --color-ink-800: #232427;
+  --color-ink-900: #17181a;
+  --color-ink-950: #0f0f10;
+
+  --color-accent: #b42318;
+  --color-accent-dark: #8f1b12;
+  --color-accent-soft: #feecea;
+
+  --shadow-card: 0 1px 2px rgb(15 15 16 / 0.05), 0 8px 24px -12px rgb(15 15 16 / 0.1);
+  --shadow-card-hover: 0 2px 4px rgb(15 15 16 / 0.06),
+    0 24px 48px -16px rgb(15 15 16 / 0.22);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white font-sans text-ink-900 antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-accent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-ink-950 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-900 transition-colors duration-200 hover:border-ink-950 hover:bg-ink-950 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-ink-200 bg-white px-4 py-1.5 text-sm font-medium text-ink-600 transition-colors duration-150 hover:border-ink-950 hover:text-ink-950;
+  }
+
+  .chip-active {
+    @apply border-ink-950 bg-ink-950 text-white hover:bg-ink-900 hover:text-white;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-[--shadow-card-hover];
+  }
+}
+
+/* Article body typography */
+.prose-article {
+  @apply prose prose-lg max-w-none;
+}
+
+.prose-article :where(h2) {
+  @apply font-serif text-3xl font-semibold tracking-tight text-ink-950;
+  margin-top: 2.75rem;
+}
+
+.prose-article :where(h3) {
+  @apply font-serif text-2xl font-semibold text-ink-950;
+}
+
+.prose-article :where(p) {
+  @apply leading-[1.85] text-ink-700;
+}
+
+.prose-article :where(blockquote) {
+  @apply border-l-4 border-accent bg-ink-50 px-6 py-1 font-serif text-2xl italic leading-snug text-ink-900;
+}
+
+.prose-article :where(strong) {
+  @apply font-semibold text-ink-950;
+}
+
+.prose-article :where(ul) {
+  @apply leading-relaxed text-ink-700;
+}
+
+/* Subtle entrance animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
