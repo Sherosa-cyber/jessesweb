@@ -126,6 +126,42 @@
         "Documentary"
       ],
       "link": "https://example.com/reel-and-real"
+    },
+    {
+      "category": "Photography & Multimedia",
+      "title": "Candid: A Day of Reporting",
+      "description": "A candid from my early reporting days — notebooks, press badges and the long walk between stories. Every journey starts somewhere.",
+      "date": "2026-08",
+      "image": "images/jesse-candid-1.jpg",
+      "tags": [
+        "Photography",
+        "Candid"
+      ],
+      "link": "https://example.com/candid-a-day-of-reporting"
+    },
+    {
+      "category": "Photography & Multimedia",
+      "title": "In the Field",
+      "description": "Practice in the field: finding the frame, waiting for the moment, and learning something from every single shot.",
+      "date": "2026-08",
+      "image": "images/jesse-candid-2.jpg",
+      "tags": [
+        "Photography",
+        "Practice"
+      ],
+      "link": "https://example.com/in-the-field"
+    },
+    {
+      "category": "Photography & Multimedia",
+      "title": "Behind the Byline",
+      "description": "The face behind the byline — a student journalist determined to start early and keep learning every day.",
+      "date": "2026-08",
+      "image": "images/jesse-candid-3.jpg",
+      "tags": [
+        "Photography",
+        "Portrait"
+      ],
+      "link": "https://example.com/behind-the-byline"
     }
   ]
 }
