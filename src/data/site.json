@@ -2,14 +2,14 @@
   "name": "Jesse Parakuo",
   "firstName": "Jesse",
   "publication": "The Parakuo Ledger",
-  "role": "Investigative Journalist & Author",
+  "role": "Student Journalist",
   "tagline": "Investigative journalist covering power, people, and the systems that connect them.",
   "heroHeadline": "Reporting on power, people, and the systems that connect them.",
-  "bioShort": "Jesse is an award-winning investigative journalist with more than a decade of experience across politics, business and technology. His reporting has shaped policy debates in three countries and his work has been published by leading outlets worldwide.",
+  "bioShort": "Jesse Parakuo is a student journalist getting an early start — reporting from campus and community, building sources and bylines one story at a time, and already thinking like a newsroom professional.",
   "bioLong": [
-    "Jesse Parakuo is an award-winning investigative journalist with more than a decade of experience covering politics, business and technology. His reporting has shaped policy debates in three countries, exposed systemic failures in public institutions, and been translated into eleven languages.",
-    "He began his career as a local reporter in 2014 before joining the national desk, where he built a reputation for patient, evidence-led investigation. His series on supply-chain fragility was cited in parliamentary hearings, and his reporting on the AI boom remains a reference point in technology policy circles.",
-    "Today Jesse splits his time between long-form investigations, original interviews, and multimedia storytelling. He believes the best journalism is built on trust: with sources, with readers, and with the communities whose stories deserve to be told carefully."
+    "Jesse Parakuo is a student journalist who believes there is no such thing as too early to start. While completing his studies, he has been building a reporter's habits from day one: filing stories for the student press, covering campus and community beats, and treating every assignment — no matter how small — as a step towards the craft he wants to master.",
+    "His early work already reaches across the newsroom: his first investigations into how decisions are made, interview series with people shaping the future, and a growing photography and multimedia practice. He is learning the fundamentals — sourcing, verification, fairness, clarity — and enjoys the long, patient work of building trust with the people he writes about.",
+    "Jesse is determined to arrive in a newsroom with more than enthusiasm: with a body of work, a list of sources and the kind of discipline that only an early start builds. He is open to internships, work experience and freelance assignments, and would love to hear from editors who believe in giving young journalists a real chance."
   ],
   "portrait": "images/portrait.jpg",
   "portraitCaption": "Jesse Parakuo, photographed in London, 2026",
@@ -40,44 +40,30 @@
   ],
   "education": [
     {
-      "degree": "Master of Arts, Journalism & Society",
-      "school": "City, University of London",
-      "period": "2012 – 2013"
-    },
-    {
-      "degree": "Bachelor of Arts, Politics & Modern History",
-      "school": "University of Manchester",
-      "period": "2008 – 2011"
+      "degree": "Bachelor of Arts, Journalism (in progress)",
+      "school": "University — currently enrolled",
+      "period": "2023 – Present"
     }
   ],
   "experience": [
     {
-      "role": "Independent Investigative Journalist",
-      "org": "Freelance & Commissioned Work",
-      "period": "2022 – Present",
+      "role": "Staff Writer",
+      "org": "The Campus Chronicle — university newspaper",
+      "period": "2025 – Present",
       "points": [
-        "Long-form investigations and features for national and international publications",
-        "Original interview series with leaders across technology, energy and government",
-        "Multimedia storytelling: documentary video, photography and podcast production"
+        "Campus news beat: student government, housing and student life",
+        "First bylines, first investigations and first interviews",
+        "Photography and multimedia storytelling for the paper's digital edition"
       ]
     },
     {
-      "role": "Senior Correspondent, Business & Technology",
-      "org": "The National Chronicle",
-      "period": "2018 – 2022",
+      "role": "Community Correspondent",
+      "org": "Local newsroom — community desk",
+      "period": "2024 – 2025",
       "points": [
-        "Led a coverage team of six across technology, energy and global trade",
-        "Broken the supply-chain investigation cited in parliamentary hearings",
-        "Twice nominated for Business Journalist of the Year"
-      ]
-    },
-    {
-      "role": "Reporter, Politics Desk",
-      "org": "The Morning Standard",
-      "period": "2014 – 2018",
-      "points": [
-        "Covered local and national government, courts and public services",
-        "Won regional reporting awards for housing and public spending investigations"
+        "Covered local council, community events and human-interest stories",
+        "Learned court and council reporting from the ground up",
+        "Built a habit of daily source-building and note discipline"
       ]
     }
   ],
@@ -95,38 +81,26 @@
   ],
   "awards": [
     {
+      "year": "2026",
+      "title": "Campus Journalist of the Year",
+      "org": "Student Press Awards"
+    },
+    {
       "year": "2025",
-      "title": "International Press Freedom Award",
-      "org": "World Editors' Forum"
+      "title": "Best News Story",
+      "org": "University Journalism Competition"
     },
     {
       "year": "2024",
-      "title": "Business Journalist of the Year",
-      "org": "National Press Awards"
-    },
-    {
-      "year": "2023",
-      "title": "Investigation of the Year",
-      "org": "European Journalism Centre"
-    },
-    {
-      "year": "2021",
-      "title": "Excellence in Data Journalism",
-      "org": "The Digital News Report"
-    },
-    {
-      "year": "2017",
-      "title": "Regional Reporter of the Year",
-      "org": "Press Guild Awards"
+      "title": "Dean's List, Faculty of Arts",
+      "org": "University"
     }
   ],
   "organisations": [
-    "The National Chronicle",
-    "The Morning Standard",
-    "The Continental Review",
-    "Meridian Business Weekly",
-    "Atlantic Public Radio",
-    "The World Desk"
+    "The Campus Chronicle",
+    "Student Press Association",
+    "Local community newsroom",
+    "University media society"
   ],
-  "availability": "Available for commissions, speaking engagements and collaborations. Based in London, working worldwide."
+  "availability": "Open to internships, work experience and freelance assignments. Keen to learn from any newsroom that gives young journalists a real chance."
 }

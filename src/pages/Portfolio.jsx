@@ -26,7 +26,7 @@ export default function Portfolio() {
       <PageHeader
         eyebrow="Portfolio"
         title="Selected work"
-        description="The investigations, interviews, features and visual stories I'm proudest of — organised by discipline."
+        description="Early work in progress: student reporting, first bylines, interviews, photography and multimedia experiments from the start of a journalism career."
       />
 
       <section className="container-x py-12 sm:py-16">
