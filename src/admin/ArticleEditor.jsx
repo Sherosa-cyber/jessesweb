@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { readFile, writeFile, listLocalFiles } from "./localStore.js";
 import { makeSlug, today } from "./gh.js";
 import LocalImage from "../components/LocalImage.jsx";
-import { blocksToText, textToBlocks } from "../utils/markup.js";
+import BlockEditor from "./BlockEditor.jsx";
 import { Field, TextInput, TextArea, Select, Checkbox, Section, Button, Status, inputClass } from "./fields.jsx";
 import { categories } from "../data/site.js";
 
@@ -185,11 +185,11 @@ function ArticleForm({ token, articles, images, editing, onCancel, onSaved }) {
       category: f.category || categories[0],
       date: f.date || today(),
       readTime: f.readTime || 5,
-      image: f.image || "images/portrait.jpg",
+      image: f.image || images[0] || "images/portrait.jpg",
       imageCaption: f.imageCaption || "",
       featured: !!f.featured,
       tags: (f.tags || []).join(", "),
-      content: blocksToText(f.content || []),
+      content: f.content || [],
     };
   });
   const [saving, setSaving] = useState(false);
@@ -225,7 +225,7 @@ function ArticleForm({ token, articles, images, editing, onCancel, onSaved }) {
           .split(",")
           .map((t) => t.trim())
           .filter(Boolean),
-        content: textToBlocks(form.content),
+        content: form.content,
       };
       const next = isNew ? [article, ...articles] : articles.map((a) => (a.slug === editing.slug ? article : a));
       await writeFile(
@@ -256,82 +256,83 @@ function ArticleForm({ token, articles, images, editing, onCancel, onSaved }) {
       {error && <p role="alert" className="mb-4 text-sm font-medium text-accent">{error}</p>}
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Section title="Title & summary">
-          <Field label="Title">
-            <TextInput value={form.title} onChange={set("title")} placeholder="The story title" />
-          </Field>
-          <Field
-            label="Slug (URL)"
-            hint="Used in the web address. Filled in automatically when you type a title — you can change it."
-          >
-            <TextInput
-              value={form.slug}
-              onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value || makeSlug(form.title) }))}
-              placeholder="my-new-story"
-            />
-          </Field>
-          <Field label="Subtitle">
-            <TextArea rows={2} value={form.subtitle} onChange={set("subtitle")} placeholder="A short compelling subtitle" />
-          </Field>
-          <Field label="Summary (shown on cards)">
-            <TextArea rows={3} value={form.excerpt} onChange={set("excerpt")} placeholder="One or two sentences shown in the article card." />
-          </Field>
-        </Section>
-
-        <Section title="Details">
-          <Field label="Category">
-            <Select options={categories} value={form.category} onChange={set("category")} />
-          </Field>
-          <div className="grid grid-cols-2 gap-4">
-            <Field label="Publish date">
-              <input type="date" className={inputClass} value={form.date} onChange={set("date")} />
+        <div className="space-y-6">
+          <Section title="Title & summary">
+            <Field label="Title">
+              <TextInput value={form.title} onChange={set("title")} placeholder="The story title" />
             </Field>
-            <Field label="Read time (minutes)">
-              <input type="number" min="1" className={inputClass} value={form.readTime} onChange={set("readTime")} />
+            <Field label="Subtitle">
+              <TextArea rows={2} value={form.subtitle} onChange={set("subtitle")} placeholder="A short compelling subtitle (optional)" />
             </Field>
-          </div>
-          <Field label="Tags" hint="Comma separated — e.g. AI, Regulation">
-            <TextInput value={form.tags} onChange={set("tags")} placeholder="AI, Regulation" />
-          </Field>
-          <Checkbox label="Feature on the homepage" checked={form.featured} onChange={set("featured")} />
-        </Section>
+            <Field label="Summary (shown on cards)">
+              <TextArea rows={3} value={form.excerpt} onChange={set("excerpt")} placeholder="One or two sentences shown in the article card." />
+            </Field>
+          </Section>
 
-        <Section title="Cover image">
-          <Field label="Image" hint="Pick an uploaded photo from the Photos tab, or type a path.">
-            <TextInput list="admin-images" value={form.image} onChange={set("image")} placeholder="images/photo.jpg" />
-            <datalist id="admin-images">
-              {images.map((img) => (
-                <option key={img} value={img} />
-              ))}
-            </datalist>
-          </Field>
-          <Field label="Image caption / credit">
-            <TextInput value={form.imageCaption} onChange={set("imageCaption")} placeholder="Caption for the featured image" />
-          </Field>
-          <div className="overflow-hidden rounded-md border border-ink-100 bg-ink-50">
-            {form.image ? (
-              <LocalImage src={form.image} alt="Cover preview" className="aspect-[16/9] w-full object-cover" />
-            ) : (
-              <p className="px-4 py-8 text-center text-sm text-ink-400">No image selected</p>
-            )}
-          </div>
-        </Section>
+          <Section title="Details">
+            <Field label="Category">
+              <Select options={categories} value={form.category} onChange={set("category")} />
+            </Field>
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Publish date">
+                <input type="date" className={inputClass} value={form.date} onChange={set("date")} />
+              </Field>
+              <Field label="Read time (minutes)" hint="Auto-filled with 5 — change if you like.">
+                <input type="number" min="1" className={inputClass} value={form.readTime} onChange={set("readTime")} />
+              </Field>
+            </div>
+            <Checkbox label="Feature on the homepage" checked={form.featured} onChange={set("featured")} />
+          </Section>
 
-        <Section title="Article content">
-          <Field
-            label="Write your article"
-            hint={undefined}
-          >
-            <TextArea rows={16} value={form.content} onChange={set("content")} />
-          </Field>
-          <div className="rounded-sm bg-ink-50 p-4 text-xs leading-relaxed text-ink-500">
-            <p className="font-semibold text-ink-700">How to format:</p>
-            <p>• Blank line between paragraphs</p>
-            <p>• <code className="rounded bg-ink-100 px-1">## Heading</code> for section headings</p>
-            <p>• <code className="rounded bg-ink-100 px-1">&gt; Quote text</code> for a pull quote (add <code className="rounded bg-ink-100 px-1">&gt; — Name</code> for the source)</p>
-            <p>• <code className="rounded bg-ink-100 px-1">![Caption](images/photo.jpg)</code> for an image with caption</p>
-            <p>• <code className="rounded bg-ink-100 px-1">- Item</code> for bullet lists</p>
-          </div>
+          <Section title="Cover image">
+            <Field label="Image" hint="Pick a photo from the list, or type a path from the Photos tab.">
+              <TextInput list="admin-images" value={form.image} onChange={set("image")} placeholder="images/photo.jpg" />
+              <datalist id="admin-images">
+                {images.map((img) => (
+                  <option key={img} value={img} />
+                ))}
+              </datalist>
+            </Field>
+            <Field label="Image caption / credit">
+              <TextInput value={form.imageCaption} onChange={set("imageCaption")} placeholder="Caption for the featured image" />
+            </Field>
+            <div className="overflow-hidden rounded-md border border-ink-100 bg-ink-50">
+              {form.image ? (
+                <LocalImage src={form.image} alt="Cover preview" className="aspect-[16/9] w-full object-cover" />
+              ) : (
+                <p className="px-4 py-8 text-center text-sm text-ink-400">No image selected</p>
+              )}
+            </div>
+          </Section>
+
+          <details className="rounded-lg border border-ink-100 bg-white p-5 shadow-[--shadow-card]">
+            <summary className="cursor-pointer text-sm font-semibold text-ink-900">
+              Advanced options
+            </summary>
+            <div className="mt-4 space-y-4">
+              <Field
+                label="Web address (slug)"
+                hint="Filled in automatically from the title — you can change it."
+              >
+                <TextInput
+                  value={form.slug}
+                  onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value || makeSlug(form.title) }))}
+                  placeholder="my-new-story"
+                />
+              </Field>
+              <Field label="Tags" hint="Comma separated — e.g. AI, Regulation">
+                <TextInput value={form.tags} onChange={set("tags")} placeholder="AI, Regulation" />
+              </Field>
+            </div>
+          </details>
+        </div>
+
+        <Section title="Write your article">
+          <p className="text-sm leading-relaxed text-ink-500">
+            Every part of your story is its own block. Add paragraphs, headings, quotes,
+            bullet lists and photos — then arrange them with the arrows.
+          </p>
+          <BlockEditor value={form.content} images={images} onChange={(blocks) => setForm((f) => ({ ...f, content: blocks }))} />
         </Section>
       </div>
 

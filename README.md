@@ -51,10 +51,10 @@ edited in the browser at **`/admin`** (e.g. `https://sherosa-cyber.github.io/jes
 
 ### The tabs
 
-- **Articles** — add, edit, or delete articles. Body text uses a simple format: blank line
-  between paragraphs, `## Heading`, `### Sub-heading`, `> Quote` (+ `> — Name` for the
-  source), `- bullet`, and `![Caption](images/photo.jpg)` for images. New articles appear
-  on the site automatically; they need an `images/...` photo.
+- **Articles** — add, edit, or delete articles. The article body is a visual block
+  editor: paragraphs, headings, quotes, bullet lists and photos are separate blocks you
+  can add, rearrange with ↑/↓ and delete — no formatting codes needed. New articles
+  appear on the site automatically; they need an `images/...` photo.
 - **Site settings** — name, publication, bio, portrait, social links (add/remove),
   contact details, education & experience entries (add/remove), awards, and more.
 - **Portfolio** — add/edit/delete portfolio pieces.
