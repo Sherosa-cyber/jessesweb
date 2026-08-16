@@ -15,7 +15,7 @@ const check = (name, ok, detail = "") => {
 };
 
 // Articles tab (default)
-check("articles list", await page.getByText("10 articles published").isVisible());
+check("articles list", await page.getByText("10 articles").isVisible());
 check("new article button", await page.getByRole("button", { name: "+ New article" }).isVisible());
 
 // Site Settings tab

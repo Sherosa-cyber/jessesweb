@@ -14,6 +14,8 @@ export default function ArticleEditor({ token }) {
   const [editing, setEditing] = useState(null); // null = list, {} = new
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
+  const [query, setQuery] = useState("");
+  const [catFilter, setCatFilter] = useState("All");
 
   useEffect(() => {
     (async () => {
@@ -54,6 +56,17 @@ export default function ArticleEditor({ token }) {
 
   const sorted = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
 
+  const filtered = sorted.filter((a) => {
+    const q = query.trim().toLowerCase();
+    const inQuery =
+      !q ||
+      a.title.toLowerCase().includes(q) ||
+      a.category.toLowerCase().includes(q) ||
+      a.slug.toLowerCase().includes(q) ||
+      (a.tags || []).some((t) => t.toLowerCase().includes(q));
+    return inQuery && (catFilter === "All" || a.category === catFilter);
+  });
+
   const remove = async (slug) => {
     if (!window.confirm("Delete this article? This cannot be undone.")) return;
     try {
@@ -77,48 +90,85 @@ export default function ArticleEditor({ token }) {
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <p className="text-sm text-ink-500">
-          <strong className="text-ink-900">{sorted.length}</strong> articles published
+          <strong className="text-ink-900">{sorted.length}</strong> articles
         </p>
         <Button onClick={() => setEditing({})}>+ New article</Button>
       </div>
 
-      {status && <div className="mb-6" />}
+      {/* Search + category filter */}
+      <div className="mb-6 flex flex-wrap items-center gap-3">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search title, category, tag…"
+          aria-label="Search articles in admin"
+          className={`${inputClass} max-w-xs`}
+        />
+        <select
+          value={catFilter}
+          onChange={(e) => setCatFilter(e.target.value)}
+          aria-label="Filter articles by category"
+          className={`${inputClass} max-w-[200px]`}
+        >
+          <option value="All">All categories</option>
+          {categories.map((c) => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+      </div>
 
-      <ul className="space-y-3">
-        {sorted.map((a) => (
-          <li
-            key={a.slug}
-            className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-ink-100 bg-white p-4 shadow-[--shadow-card] sm:p-5"
-          >
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
-                {a.featured && (
-                  <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
-                    Featured
+      {filtered.length === 0 ? (
+        <p className="rounded-lg border border-dashed border-ink-200 bg-ink-50 p-8 text-center text-sm text-ink-400">
+          No articles match — try a different search, or add a new one.
+        </p>
+      ) : (
+        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {filtered.map((a) => (
+            <li
+              key={a.slug}
+              className="flex flex-col overflow-hidden rounded-lg border border-ink-100 bg-white shadow-[--shadow-card] transition-shadow hover:shadow-[--shadow-card-hover]"
+            >
+              <div className="relative aspect-[16/9] overflow-hidden bg-ink-50">
+                <LocalImage
+                  src={a.image}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 flex gap-1.5 p-3">
+                  {a.featured && (
+                    <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
+                      Featured
+                    </span>
+                  )}
+                  <span className="rounded-sm bg-ink-950/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
+                    {a.category}
                   </span>
-                )}
-                <span className="rounded-sm bg-ink-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-ink-600">
-                  {a.category}
-                </span>
+                </div>
               </div>
-              <h3 className="mt-2 truncate font-serif text-lg font-semibold text-ink-950">
-                {a.title}
-              </h3>
-              <p className="mt-1 text-xs text-ink-400">
-                {a.date} · {a.readTime} min read · /articles/{a.slug}
-              </p>
-            </div>
-            <div className="flex shrink-0 gap-2">
-              <Button variant="outline" onClick={() => setEditing(a)}>
-                Edit
-              </Button>
-              <Button variant="danger" onClick={() => remove(a.slug)}>
-                Delete
-              </Button>
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="flex flex-1 flex-col p-4">
+                <h3 className="line-clamp-2 font-serif text-lg font-semibold leading-snug text-ink-950">
+                  {a.title}
+                </h3>
+                <p className="mt-1.5 text-xs text-ink-400">
+                  {a.date} · {a.readTime} min read
+                </p>
+                <p className="mt-0.5 truncate font-mono text-[11px] text-ink-300">
+                  /articles/{a.slug}
+                </p>
+                <div className="mt-4 flex gap-2 border-t border-ink-100 pt-3">
+                  <Button variant="outline" onClick={() => setEditing(a)}>
+                    Edit
+                  </Button>
+                  <Button variant="danger" onClick={() => remove(a.slug)}>
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
